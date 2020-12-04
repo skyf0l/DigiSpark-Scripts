@@ -2,7 +2,7 @@
 // Format: most signifficant bit indicates if scan code should be sent with shift modifier
 // remaining 7 bits are to be used as scan code number.
 
-const unsigned char ascii_to_scan_code_table[] PROGMEM = {
+const uint16_t ascii_to_scan_code_table[] PROGMEM = {
   // /* ASCII:   0 */ 0,
   // /* ASCII:   1 */ 0,
   // /* ASCII:   2 */ 0,

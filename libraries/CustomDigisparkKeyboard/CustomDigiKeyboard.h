@@ -4,8 +4,8 @@
  * TODO: Make a proper file header. :-)
  * Modified for Digispark by Digistump
  */
-#ifndef __DigiKeyboard_h__
-#define __DigiKeyboard_h__
+#ifndef __CustomDigiKeyboard_h__
+#define __CustomDigiKeyboard_h__
 
 #include <Arduino.h>
 #include <avr/pgmspace.h>
@@ -14,8 +14,8 @@
 #include <string.h>
 
 #include "usbdrv.h"
-#include "keyboard-keys.h"
 #include "scancode-ascii-table.h"
+#include "keyboard-keys.h"
 
 // TODO: Work around Arduino 12 issues better.
 //#include <WConstants.h>
@@ -131,8 +131,8 @@ class DigiKeyboardDevice : public Print {
   }
 
   size_t write(uint8_t chr) {
-    uint8_t data = pgm_read_byte_near(ascii_to_scan_code_table + (chr - 8));
-    sendKeyStroke(data & 0b01111111, data >> 7 ? MOD_SHIFT_RIGHT : 0);
+    uint16_t data = pgm_read_word_near(ascii_to_scan_code_table + (chr - 8));
+    sendKeyStroke(data & 0b11111111, data >> 8);
     return 1;
   }
 
@@ -181,4 +181,4 @@ extern "C"{
 #endif
 
 
-#endif // __DigiKeyboard_h__
+#endif // __CustomDigiKeyboard_h__

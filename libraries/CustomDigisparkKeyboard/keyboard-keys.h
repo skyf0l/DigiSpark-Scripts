@@ -127,5 +127,6 @@
 #define KEYPAD_0	98
 
 #define KEYPAD_PERIOD	99
+#define KEY_ANGLE_BRACE	100
 
 #endif /* __KeyboardKeys_h__ */

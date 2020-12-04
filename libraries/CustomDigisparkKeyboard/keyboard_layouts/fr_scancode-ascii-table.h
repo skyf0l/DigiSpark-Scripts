@@ -2,132 +2,135 @@
 // Format: most signifficant bit indicates if scan code should be sent with shift modifier
 // remaining 7 bits are to be used as scan code number.
 
+#include "keyboard-keys.h"
+
 const uint16_t ascii_to_scan_code_table[] PROGMEM = {
-  // /* ASCII:   0 */ 0,
-  // /* ASCII:   1 */ 0,
-  // /* ASCII:   2 */ 0,
-  // /* ASCII:   3 */ 0,
-  // /* ASCII:   4 */ 0,
-  // /* ASCII:   5 */ 0,
-  // /* ASCII:   6 */ 0,
-  // /* ASCII:   7 */ 0,
-  /* ASCII:   8 */ 42,
-  /* ASCII:   9 */ 43,
-  /* ASCII:  10 */ 40,
-  /* ASCII:  11 */ 0,
-  /* ASCII:  12 */ 0,
-  /* ASCII:  13 */ 0,
-  /* ASCII:  14 */ 0,
-  /* ASCII:  15 */ 0,
-  /* ASCII:  16 */ 0,
-  /* ASCII:  17 */ 0,
-  /* ASCII:  18 */ 0,
-  /* ASCII:  19 */ 0,
-  /* ASCII:  20 */ 0,
-  /* ASCII:  21 */ 0,
-  /* ASCII:  22 */ 0,
-  /* ASCII:  23 */ 0,
-  /* ASCII:  24 */ 0,
-  /* ASCII:  25 */ 0,
-  /* ASCII:  26 */ 0,
-  /* ASCII:  27 */ 41,
-  /* ASCII:  28 */ 0,
-  /* ASCII:  29 */ 0,
-  /* ASCII:  30 */ 0,
-  /* ASCII:  31 */ 0,
-  /* ASCII:  32 */ 44,
-  /* ASCII:  33 */ 158,
-  /* ASCII:  34 */ 180,
-  /* ASCII:  35 */ 160,
-  /* ASCII:  36 */ 161,
-  /* ASCII:  37 */ 162,
-  /* ASCII:  38 */ 164,
-  /* ASCII:  39 */ 52,
-  /* ASCII:  40 */ 166,
-  /* ASCII:  41 */ 167,
-  /* ASCII:  42 */ 165,
-  /* ASCII:  43 */ 174,
-  /* ASCII:  44 */ 54,
-  /* ASCII:  45 */ 45,
-  /* ASCII:  46 */ 55,
-  /* ASCII:  47 */ 56,
-  /* ASCII:  48 */ 39,
-  /* ASCII:  49 */ 30,
-  /* ASCII:  50 */ 31,
-  /* ASCII:  51 */ 32,
-  /* ASCII:  52 */ 33,
-  /* ASCII:  53 */ 34,
-  /* ASCII:  54 */ 35,
-  /* ASCII:  55 */ 36,
-  /* ASCII:  56 */ 37,
-  /* ASCII:  57 */ 38,
-  /* ASCII:  58 */ 179,
-  /* ASCII:  59 */ 51,
-  /* ASCII:  60 */ 182,
-  /* ASCII:  61 */ 46,
-  /* ASCII:  62 */ 183,
-  /* ASCII:  63 */ 184,
-  /* ASCII:  64 */ 159,
-  /* ASCII:  65 */ 132,
-  /* ASCII:  66 */ 133,
-  /* ASCII:  67 */ 134,
-  /* ASCII:  68 */ 135,
-  /* ASCII:  69 */ 136,
-  /* ASCII:  70 */ 137,
-  /* ASCII:  71 */ 138,
-  /* ASCII:  72 */ 139,
-  /* ASCII:  73 */ 140,
-  /* ASCII:  74 */ 141,
-  /* ASCII:  75 */ 142,
-  /* ASCII:  76 */ 143,
-  /* ASCII:  77 */ 144,
-  /* ASCII:  78 */ 145,
-  /* ASCII:  79 */ 146,
-  /* ASCII:  80 */ 147,
-  /* ASCII:  81 */ 148,
-  /* ASCII:  82 */ 149,
-  /* ASCII:  83 */ 150,
-  /* ASCII:  84 */ 151,
-  /* ASCII:  85 */ 152,
-  /* ASCII:  86 */ 153,
-  /* ASCII:  87 */ 154,
-  /* ASCII:  88 */ 155,
-  /* ASCII:  89 */ 156,
-  /* ASCII:  90 */ 157,
-  /* ASCII:  91 */ 47,
-  /* ASCII:  92 */ 49,
-  /* ASCII:  93 */ 48,
-  /* ASCII:  94 */ 163,
-  /* ASCII:  95 */ 173,
-  /* ASCII:  96 */ 53,
-  /* ASCII:  97 */ 4,
-  /* ASCII:  98 */ 5,
-  /* ASCII:  99 */ 6,
-  /* ASCII: 100 */ 7,
-  /* ASCII: 101 */ 8,
-  /* ASCII: 102 */ 9,
-  /* ASCII: 103 */ 10,
-  /* ASCII: 104 */ 11,
-  /* ASCII: 105 */ 12,
-  /* ASCII: 106 */ 13,
-  /* ASCII: 107 */ 14,
-  /* ASCII: 108 */ 15,
-  /* ASCII: 109 */ 16,
-  /* ASCII: 110 */ 17,
-  /* ASCII: 111 */ 18,
-  /* ASCII: 112 */ 19,
-  /* ASCII: 113 */ 20,
-  /* ASCII: 114 */ 21,
-  /* ASCII: 115 */ 22,
-  /* ASCII: 116 */ 23,
-  /* ASCII: 117 */ 24,
-  /* ASCII: 118 */ 25,
-  /* ASCII: 119 */ 26,
-  /* ASCII: 120 */ 27,
-  /* ASCII: 121 */ 28,
-  /* ASCII: 122 */ 29,
-  /* ASCII: 123 */ 175,
-  /* ASCII: 124 */ 177,
-  /* ASCII: 125 */ 176,
-  /* ASCII: 126 */ 181
+  // /* ASCII: 0 */ 0,  // null  NUL
+  // /* ASCII: 1 */ 0,  // start of heading  SOH
+  // /* ASCII: 2 */ 0,  // start of text STX
+  // /* ASCII: 3 */ 0,  // end of text EOT
+  // /* ASCII: 4 */ 0,  // end of transmission EOT
+  // /* ASCII: 5 */ 0,  // enquiry ENQ
+  // /* ASCII: 6 */ 0,  // acknowledge ACK
+  // /* ASCII: 7 */ 0,  // bell  BEL
+  /* ASCII: 8 */ KEY_BACKSPACE, // backpace  BS
+  /* ASCII: 9 */ KEY_TAB, // horizontal tab  HT
+  /* ASCII: 10 */ KEY_ENTER,  // line feed, new line LF, NL
+  /* ASCII: 11 */ 0,  // vertical tab  VT
+  /* ASCII: 12 */ 0,  // form feed, new page FF, NP
+  /* ASCII: 13 */ 0,  // carriage return CR
+  /* ASCII: 14 */ 0,  // shift out SO
+  /* ASCII: 15 */ 0,  // shift in  SI
+  /* ASCII: 16 */ 0,  // data link escape  DLE
+  /* ASCII: 17 */ 0,  // device control 1  DC1
+  /* ASCII: 18 */ 0,  // device control 2  DC2
+  /* ASCII: 19 */ 0,  // device control 3  DC3
+  /* ASCII: 20 */ 0,  // device control 4  DC4
+  /* ASCII: 21 */ 0,  // negative acknowledge  NAK
+  /* ASCII: 22 */ 0,  // synchonous idle SYN
+  /* ASCII: 23 */ 0,  // end of transmission block ETB
+  /* ASCII: 24 */ 0,  // cancel  CAN
+  /* ASCII: 25 */ 0,  // end of medium EM
+  /* ASCII: 26 */ 0,  // substitute  SUB
+  /* ASCII: 27 */ KEY_ESC,  // escape  ESC
+  /* ASCII: 28 */ 0,  // file separator  FS
+  /* ASCII: 29 */ 0,  // group separator GS
+  /* ASCII: 30 */ 0,  // record separator  RS
+  /* ASCII: 31 */ 0,  // unit separator  US
+  /* ASCII: 32 */ KEY_SPACE,  // space
+  /* ASCII: 33 */ KEY_SLASH,  // ! &excl;  exclamation mark
+  /* ASCII: 34 */ KEY_3,  // " &quot;  double quotation mark
+  /* ASCII: 35 */ KEY_3 | MOD_ALT_RIGHT << 8, // # &num; number sign, pound
+  /* ASCII: 36 */ KEY_RIGHT_BRACE,  // $ &dollar;  dollar sign
+  /* ASCII: 37 */ KEY_QUOTE | MOD_SHIFT_LEFT << 8,  // % &percnt;  percent sign
+  /* ASCII: 38 */ KEY_1,  // & &amp; ampersand
+  /* ASCII: 39 */ KEY_4,  // ' &apos;  apostrophe, single quote mark
+  /* ASCII: 40 */ KEY_5,  // ( &lpar;  left parenthesis
+  /* ASCII: 41 */ KEY_MINUS,  // ) &rpar;  right parenthesis
+  /* ASCII: 42 */ KEY_NUMBER,  // * &ast; asterisk (or KEY_BACKSLASH)
+  /* ASCII: 43 */ KEY_EQUAL | MOD_SHIFT_LEFT << 8,  // + &plus;  plus sign
+  /* ASCII: 44 */ KEY_M,  // , &comma; comma
+  /* ASCII: 45 */ KEY_6,  // - &minus;   &hyphen;  minus sign, hyphen
+  /* ASCII: 46 */ KEY_COMMA | MOD_SHIFT_LEFT << 8,  // . &period;  period, decimal point, full stop
+  /* ASCII: 47 */ KEY_PERIOD | MOD_SHIFT_LEFT << 8,  // / &sol; slash, virgule, solidus
+  /* ASCII: 48 */ KEY_0 | MOD_SHIFT_LEFT << 8,  // digit 0
+  /* ASCII: 49 */ KEY_1 | MOD_SHIFT_LEFT << 8,  // digit 1
+  /* ASCII: 50 */ KEY_2 | MOD_SHIFT_LEFT << 8,  // digit 2
+  /* ASCII: 51 */ KEY_3 | MOD_SHIFT_LEFT << 8,  // digit 3
+  /* ASCII: 52 */ KEY_4 | MOD_SHIFT_LEFT << 8,  // digit 4
+  /* ASCII: 53 */ KEY_5 | MOD_SHIFT_LEFT << 8,  // digit 5
+  /* ASCII: 54 */ KEY_6 | MOD_SHIFT_LEFT << 8,  // digit 6
+  /* ASCII: 55 */ KEY_7 | MOD_SHIFT_LEFT << 8,  // digit 7
+  /* ASCII: 56 */ KEY_8 | MOD_SHIFT_LEFT << 8,  // digit 8
+  /* ASCII: 57 */ KEY_9 | MOD_SHIFT_LEFT << 8,  // digit 9
+  /* ASCII: 58 */ KEY_PERIOD,  // : &colon; colon
+  /* ASCII: 59 */ KEY_COMMA,  // ; &semi;  semicolon
+  /* ASCII: 60 */ KEY_ANGLE_BRACE,  // < &lt;  less-than sign
+  /* ASCII: 61 */ KEY_EQUAL,  // = &equals;  equal sign
+  /* ASCII: 62 */ KEY_ANGLE_BRACE | MOD_SHIFT_LEFT << 8,  // > &gt;  greater-than sign
+  /* ASCII: 63 */ KEY_M | MOD_SHIFT_LEFT << 8,  // ? &quest; question mark
+  /* ASCII: 64 */ KEY_0 | MOD_ALT_RIGHT << 8, // @ &commat;  commercial at sign
+  /* ASCII: 65 */ KEY_Q | MOD_SHIFT_LEFT << 8,  // capital A
+  /* ASCII: 66 */ KEY_B | MOD_SHIFT_LEFT << 8,  // capital B
+  /* ASCII: 67 */ KEY_C | MOD_SHIFT_LEFT << 8,  // capital C
+  /* ASCII: 68 */ KEY_D | MOD_SHIFT_LEFT << 8,  // capital D
+  /* ASCII: 69 */ KEY_E | MOD_SHIFT_LEFT << 8,  // capital E
+  /* ASCII: 70 */ KEY_F | MOD_SHIFT_LEFT << 8,  // capital F
+  /* ASCII: 71 */ KEY_G | MOD_SHIFT_LEFT << 8,  // capital G
+  /* ASCII: 72 */ KEY_H | MOD_SHIFT_LEFT << 8,  // capital H
+  /* ASCII: 73 */ KEY_I | MOD_SHIFT_LEFT << 8,  // capital I
+  /* ASCII: 74 */ KEY_J | MOD_SHIFT_LEFT << 8,  // capital J
+  /* ASCII: 75 */ KEY_K | MOD_SHIFT_LEFT << 8,  // capital K
+  /* ASCII: 76 */ KEY_L | MOD_SHIFT_LEFT << 8,  // capital L
+  /* ASCII: 77 */ KEY_SEMICOLON | MOD_SHIFT_LEFT << 8,  // capital M
+  /* ASCII: 78 */ KEY_N | MOD_SHIFT_LEFT << 8,  // capital N
+  /* ASCII: 79 */ KEY_O | MOD_SHIFT_LEFT << 8,  // capital O
+  /* ASCII: 80 */ KEY_P | MOD_SHIFT_LEFT << 8,  // capital P
+  /* ASCII: 81 */ KEY_A | MOD_SHIFT_LEFT << 8,  // capital Q
+  /* ASCII: 82 */ KEY_R | MOD_SHIFT_LEFT << 8,  // capital R
+  /* ASCII: 83 */ KEY_S | MOD_SHIFT_LEFT << 8,  // capital S
+  /* ASCII: 84 */ KEY_T | MOD_SHIFT_LEFT << 8,  // capital T
+  /* ASCII: 85 */ KEY_U | MOD_SHIFT_LEFT << 8,  // capital U
+  /* ASCII: 86 */ KEY_V | MOD_SHIFT_LEFT << 8,  // capital V
+  /* ASCII: 87 */ KEY_Z | MOD_SHIFT_LEFT << 8,  // capital W
+  /* ASCII: 88 */ KEY_X | MOD_SHIFT_LEFT << 8,  // capital X
+  /* ASCII: 89 */ KEY_Y | MOD_SHIFT_LEFT << 8,  // capital Y
+  /* ASCII: 90 */ KEY_W | MOD_SHIFT_LEFT << 8,  // capital Z
+  /* ASCII: 91 */ KEY_5 | MOD_ALT_RIGHT << 8, // [ &lsqb;  left square bracket
+  /* ASCII: 92 */ KEY_8 | MOD_ALT_RIGHT << 8, // \ &bsol;  backslash, reverse solidus
+  /* ASCII: 93 */ KEY_MINUS | MOD_ALT_RIGHT << 8, // ] &rsqb;  right square bracket
+  /* ASCII: 94 */ KEY_9 | MOD_ALT_RIGHT << 8, // ^ &circ;  spacing circumflex accent
+  /* ASCII: 95 */ KEY_8,  // _ &lowbar;   &horbar; spacing underscore, low line, horizontal bar
+  /* ASCII: 96 */ KEY_7 | MOD_ALT_RIGHT << 8, // ` &grave; spacing grave accent, back apostrophe
+  /* ASCII: 97 */ KEY_Q,  // small a
+  /* ASCII: 98 */ KEY_B,  // small b
+  /* ASCII: 99 */ KEY_C,  // small c
+  /* ASCII: 100 */ KEY_D, // small d
+  /* ASCII: 101 */ KEY_E, // small e
+  /* ASCII: 102 */ KEY_F, // small f
+  /* ASCII: 103 */ KEY_G, // small g
+  /* ASCII: 104 */ KEY_H, // small h
+  /* ASCII: 105 */ KEY_I, // small i
+  /* ASCII: 106 */ KEY_J, // small j
+  /* ASCII: 107 */ KEY_K, // small k
+  /* ASCII: 108 */ KEY_L, // small l
+  /* ASCII: 109 */ KEY_SEMICOLON, // small m
+  /* ASCII: 110 */ KEY_N, // small n
+  /* ASCII: 111 */ KEY_O, // small o
+  /* ASCII: 112 */ KEY_P, // small p
+  /* ASCII: 113 */ KEY_A, // small q
+  /* ASCII: 114 */ KEY_R, // small r
+  /* ASCII: 115 */ KEY_S, // small s
+  /* ASCII: 116 */ KEY_T, // small t
+  /* ASCII: 117 */ KEY_U, // small u
+  /* ASCII: 118 */ KEY_V, // small v
+  /* ASCII: 119 */ KEY_Z, // small w
+  /* ASCII: 120 */ KEY_X, // small x
+  /* ASCII: 121 */ KEY_Y, // small y
+  /* ASCII: 122 */ KEY_W, // small z
+  /* ASCII: 123 */ KEY_4 | MOD_ALT_RIGHT << 8,  // { &lcub;  left brace, left curly bracket
+  /* ASCII: 124 */ KEY_6 | MOD_ALT_RIGHT << 8,  // | &verbar;  vertical bar
+  /* ASCII: 125 */ KEY_EQUAL | MOD_ALT_RIGHT << 8,  // } &rcub;  right brace, right curly bracket
+  /* ASCII: 126 */ KEY_2 | MOD_ALT_RIGHT << 8,  // ~ &tilde; tilde accent
+  /* ASCII: 127 */ KEY_DELETE,  // delete  DEL
 };
